@@ -8,13 +8,23 @@
 </head>
 <body>
     <div class="container">
+        <div class="food-icon">🍜</div>
         <h1>สุ่มเมนูอาหาร</h1>
 
-        <!-- ปุ่มสุ่มเมนู -->
-        <button onclick="randomizeMenu()">สุ่มเมนู</button>
+        <div class="control-group">
+            <label for="category">เลือกหมวดหมู่:</label>
+            <select id="category">
+                <option value="food">🍛อาหาร</option>
+                <option value="drink">🥤เครื่องดื่ม</option>
+            </select>
+        </div>
 
-        <h2>เมนูที่สุ่มได้:</h2>
-        <p id="randomMenu">โปรดกดสุ่มเมนูเพื่อดูตัวเลือก</p>
+        <button id="randomizeBtn">สุ่มเมนูเลย!</button>
+
+        <div class="result-container">
+            <h2>เมนูที่สุ่มได้:</h2>
+            <p id="randomMenu">โปรดเลือกหมวดหมู่และกดสุ่มเมนู</p>
+        </div>
     </div>
 
     <script src="script.js"></script>
