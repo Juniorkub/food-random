@@ -26,6 +26,38 @@ const drinkMenu = [
     "น้ำเปล่า", "โอวัลติน", "น้ำผึ้งมะนาว", "โกโก้", "น้ำผลไม้รวม"
 ];
 
+// ฟังก์ชันสำหรับนับจำนวนผู้เข้าชม
+function updateVisitorCount() {
+    // ดึงค่าจำนวนผู้เข้าชมจาก localStorage
+    let visitorCount = localStorage.getItem('visitorCount');
+    
+    // ถ้าไม่มีข้อมูลให้เริ่มนับที่ 1
+    if (!visitorCount) {
+        visitorCount = 1;
+    } else {
+        // ถ้ามีข้อมูลอยู่แล้ว ตรวจสอบว่าเป็นการเข้าชมครั้งแรกของวันนี้หรือไม่
+        const lastVisit = localStorage.getItem('lastVisit');
+        const today = new Date().toDateString();
+        
+        // ถ้าเป็นวันใหม่ให้เพิ่มจำนวนผู้เข้าชม
+        if (lastVisit !== today) {
+            visitorCount = parseInt(visitorCount) + 1;
+        }
+    }
+    
+    // บันทึกจำนวนผู้เข้าชมและวันที่เข้าชมล่าสุดลงใน localStorage
+    localStorage.setItem('visitorCount', visitorCount);
+    localStorage.setItem('lastVisit', new Date().toDateString());
+    
+    // แสดงผลจำนวนผู้เข้าชมในหน้าเว็บ
+    document.getElementById('visitorCount').textContent = visitorCount;
+}
+
+// เพิ่มโค้ดนี้ต่อจากโค้ด event listener ตอนท้ายไฟล์
+
+// เรียกใช้ฟังก์ชันนับผู้เข้าชมเมื่อโหลดเว็บไซต์
+document.addEventListener('DOMContentLoaded', updateVisitorCount);
+
 function updateFoodIcon(category) {
     const foodIcon = document.querySelector('.food-icon');
     if (category === 'food') {
