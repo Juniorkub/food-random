@@ -35,20 +35,71 @@ function updateFoodIcon(category) {
     }
 }
 
+// เพิ่มตัวแปรควบคุมแอนิเมชัน
+let isSpinning = false;
+let spinInterval;
+
+function spinWheel(menuList, finalItem) {
+    const menuElement = document.getElementById("randomMenu");
+    let counter = 0;
+    const totalSpins = 30; // จำนวนครั้งที่จะสลับเมนู
+    
+    // เริ่มด้วยความเร็วสูง แล้วค่อยๆ ช้าลง
+    const initialSpeed = 50; // ms
+    const speedIncrement = 10; // ms
+    
+    // ล้างการแสดงผลเดิม
+    menuElement.classList.remove('pop-animation');
+    
+    // เริ่มการหมุน
+    spinInterval = setInterval(() => {
+        // สุ่มเมนูระหว่างหมุน
+        let randomIndex = Math.floor(Math.random() * menuList.length);
+        menuElement.textContent = menuList[randomIndex];
+        
+        counter++;
+        
+        // ช้าลงเรื่อยๆ
+        if (counter % 3 === 0) {
+            clearInterval(spinInterval);
+            spinInterval = setInterval(() => {
+                let randomIndex = Math.floor(Math.random() * menuList.length);
+                menuElement.textContent = menuList[randomIndex];
+                
+                counter++;
+                
+                // ตรวจสอบว่าถึงเวลาหยุดหรือยัง
+                if (counter >= totalSpins) {
+                    clearInterval(spinInterval);
+                    menuElement.textContent = finalItem;
+                    
+                    // เพิ่มแอนิเมชันเมื่อแสดงผลตัวสุดท้าย
+                    menuElement.classList.add('pop-animation');
+                    isSpinning = false;
+                    document.getElementById("randomizeBtn").disabled = false;
+                    document.getElementById("category").disabled = false;
+                }
+            }, initialSpeed + (counter * speedIncrement));
+        }
+    }, initialSpeed);
+}
+
 function randomizeMenu() {
+    // ป้องกันการกดปุ่มซ้ำระหว่างกำลังสุ่ม
+    if (isSpinning) return;
+    
+    isSpinning = true;
+    document.getElementById("randomizeBtn").disabled = true;
+    document.getElementById("category").disabled = true;
+    
     const category = document.getElementById("category").value;
     updateFoodIcon(category);
     
     let menuList = category === "food" ? foodMenu : drinkMenu;
     let randomItem = menuList[Math.floor(Math.random() * menuList.length)];
     
-    const menuElement = document.getElementById("randomMenu");
-    menuElement.textContent = randomItem;
-    
-    // Apply animation
-    menuElement.classList.remove('pop-animation');
-    void menuElement.offsetWidth; // Trigger reflow
-    menuElement.classList.add('pop-animation');
+    // เริ่มการหมุนวงล้อด้วยเมนูที่สุ่มได้เป็นค่าสุดท้าย
+    spinWheel(menuList, randomItem);
 }
 
 document.getElementById("randomizeBtn").addEventListener("click", randomizeMenu);
