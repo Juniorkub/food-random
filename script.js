@@ -28,25 +28,20 @@ const drinkMenu = [
 
 // ฟังก์ชันสำหรับนับจำนวนผู้เข้าชม
 function updateVisitorCount() {
-    let visitorCount = localStorage.getItem('visitorCount');
-    
-    // ถ้ายังไม่มีค่าใน localStorage ให้เริ่มที่ 1
-    if (!visitorCount) {
-        visitorCount = 1;
-    } else {
-        visitorCount = parseInt(visitorCount) + 1; // เพิ่มทุกครั้งที่มีคนเข้าชม
-    }
-    
-    // บันทึกค่าล่าสุดลง localStorage
-    localStorage.setItem('visitorCount', visitorCount);
-    localStorage.setItem('lastVisit', new Date().toDateString());
+    let visitorCount = localStorage.getItem('visitorCount') || 0;
+    let lastVisit = localStorage.getItem('lastVisit');
+    let today = new Date().toDateString(); // เก็บเป็นรูปแบบของวันที่
 
-    // แสดงผลจำนวนผู้เข้าชม
+    if (lastVisit !== today) {
+        visitorCount = parseInt(visitorCount) + 1;
+        localStorage.setItem('visitorCount', visitorCount);
+        localStorage.setItem('lastVisit', today);
+    }
+
     document.getElementById('visitorCount').textContent = visitorCount;
 }
 
-
-// เพิ่มโค้ดนี้ต่อจากโค้ด event listener ตอนท้ายไฟล์
+document.addEventListener('DOMContentLoaded', updateVisitorCount);
 
 // เรียกใช้ฟังก์ชันนับผู้เข้าชมเมื่อโหลดเว็บไซต์
 document.addEventListener('DOMContentLoaded', updateVisitorCount);
