@@ -28,30 +28,23 @@ const drinkMenu = [
 
 // ฟังก์ชันสำหรับนับจำนวนผู้เข้าชม
 function updateVisitorCount() {
-    // ดึงค่าจำนวนผู้เข้าชมจาก localStorage
     let visitorCount = localStorage.getItem('visitorCount');
     
-    // ถ้าไม่มีข้อมูลให้เริ่มนับที่ 1
+    // ถ้ายังไม่มีค่าใน localStorage ให้เริ่มที่ 1
     if (!visitorCount) {
         visitorCount = 1;
     } else {
-        // ถ้ามีข้อมูลอยู่แล้ว ตรวจสอบว่าเป็นการเข้าชมครั้งแรกของวันนี้หรือไม่
-        const lastVisit = localStorage.getItem('lastVisit');
-        const today = new Date().toDateString();
-        
-        // ถ้าเป็นวันใหม่ให้เพิ่มจำนวนผู้เข้าชม
-        if (lastVisit !== today) {
-            visitorCount = parseInt(visitorCount) + 1;
-        }
+        visitorCount = parseInt(visitorCount) + 1; // เพิ่มทุกครั้งที่มีคนเข้าชม
     }
     
-    // บันทึกจำนวนผู้เข้าชมและวันที่เข้าชมล่าสุดลงใน localStorage
+    // บันทึกค่าล่าสุดลง localStorage
     localStorage.setItem('visitorCount', visitorCount);
     localStorage.setItem('lastVisit', new Date().toDateString());
-    
-    // แสดงผลจำนวนผู้เข้าชมในหน้าเว็บ
+
+    // แสดงผลจำนวนผู้เข้าชม
     document.getElementById('visitorCount').textContent = visitorCount;
 }
+
 
 // เพิ่มโค้ดนี้ต่อจากโค้ด event listener ตอนท้ายไฟล์
 
