@@ -27,6 +27,55 @@
         </div>
     </div>
 
+    <div id="chatContainer" class="container hidden">
+        <h2>โหมดแชทบอท</h2>
+        <p>แชทบอทจะถามคำถามเพื่อแนะนำเมนูที่เหมาะสม</p>
+        <!-- สามารถเพิ่ม UI สำหรับแชทบอทที่นี่ -->
+        <div id="question1" class="question">
+            คุณอยากทานอะไรวันนี้?
+            <div class="options">
+                <button class="optionBtn" onclick="selectOption('ข้าว')">ข้าว</button>
+                <button class="optionBtn" onclick="selectOption('เส้น')">เส้น</button>
+                <button class="optionBtn" onclick="selectOption('ของกินเล่น')">ของกินเล่น</button>
+            </div>
+        </div>
+
+        <div id="question2" class="question hidden">
+            คุณชอบอาหารเผ็ดไหม?
+            <div class="options">
+                <button class="optionBtn" onclick="selectOption('เผ็ด')">เผ็ด</button>
+                <button class="optionBtn" onclick="selectOption('ไม่เผ็ด')">ไม่เผ็ด</button>
+            </div>
+        </div>
+
+        <div id="question3" class="question hidden">
+            คุณชอบอาหารแบบไหน?
+            <div class="options">
+                <button class="optionBtn" onclick="selectOption('จัดเต็ม')">จัดเต็ม</button>
+                <button class="optionBtn" onclick="selectOption('ง่ายๆ')">ง่ายๆ</button>
+            </div>
+        </div>
+
+
+        <div id="recommendationResult" class="hidden">
+            <h3>เมนูที่เหมาะกับคุณ</h3>
+            <div id="recommendedMenu" class="menu-result"></div>
+            <div class="action-buttons">
+                <button id="randomAgainBtn" class="action-btn">สุ่มใหม่</button>
+                <button id="restartBtn" class="action-btn">เลือกใหม่</button>
+            </div>
+        </div>
+
+
+
+        <button id="submitAnswersBtn" class="hidden" onclick="submitAnswers()">ยืนยันคำตอบ</button>
+    </div>
+
+
+    <button id="modeToggleBtn" onclick="toggleMode()">เปลี่ยนโหมด</button>
+
+
+
     <div class="visitor-counter">
         <p>ยอดผู้เข้าชม: <span id="visitorCount">0</span></p>
     </div>

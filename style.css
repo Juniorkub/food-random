@@ -187,3 +187,176 @@ h2 {
     color: #ffe066; /* ใช้สีชมพูอ่อนที่สอดคล้องกับธีมของเว็บไซต์ */
     font-weight: 700;
 }
+
+
+#toggleButton {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Prompt', sans-serif;
+    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+    position: fixed; /* ทำให้ปุ่มอยู่ในตำแหน่งคงที่ */
+    bottom: 30px; /* กำหนดระยะห่างจากด้านล่าง */
+    left: 50%; /* จัดให้ปุ่มอยู่ที่กึ่งกลางของหน้าจอ */
+    transform: translateX(-50%); /* จัดตำแหน่งปุ่มให้ตรงกลาง */
+    z-index: 1000; /* ทำให้ปุ่มอยู่เหนือองค์ประกอบอื่น ๆ */
+}
+/* ปรับการแสดงผลของปุ่มสลับโหมด */
+#modeToggleBtn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Prompt', sans-serif;
+    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+    position: fixed; /* ทำให้ปุ่มอยู่ในตำแหน่งคงที่ */
+    bottom: 90px; /* กำหนดระยะห่างจากด้านล่าง */
+    left: 50%; /* จัดให้ปุ่มอยู่ที่กึ่งกลางของหน้าจอ */
+    transform: translateX(-50%); /* จัดตำแหน่งปุ่มให้ตรงกลาง */
+    z-index: 1000; /* ทำให้ปุ่มอยู่เหนือองค์ประกอบอื่น ๆ */
+}
+
+#chatContainer {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+
+button {
+    background-color: #4CAF50; /* สีพื้นหลัง */
+    border: none;
+    color: white; /* สีข้อความ */
+    padding: 12px 24px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px; /* มุมโค้ง */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* เมื่อเลื่อนเมาส์ไปที่ปุ่ม */
+button:hover {
+    background-color: #45a049; /* สีพื้นหลังเมื่อ hover */
+    transform: scale(1.05); /* ขยายปุ่มเล็กน้อยเมื่อ hover */
+}
+
+/* สไตล์สำหรับกรอบคำถาม */
+#chatContainer {
+    padding: 20px;
+    background-color: #f4f4f9;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    width: 320px;
+    margin: 20px auto;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* สไตล์สำหรับคำถาม */
+.question {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+
+
+/* เมื่อเลื่อนเมาส์ไปที่ปุ่มตัวเลือก */
+.optionBtn:hover {
+    background-color: #fb8c00;
+    transform: scale(1.05);
+}
+
+/* ซ่อนตัวเลือกเมื่อไม่ได้ใช้งาน */
+.hidden {
+    display: none;
+}
+
+/* สไตล์สำหรับแสดงปุ่มยืนยัน */
+#submitAnswersBtn {
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 100%;
+    display: none; /* เริ่มต้นให้ซ่อนไว้ก่อน */
+}
+
+#submitAnswersBtn:not(.hidden) {
+    display: block; /* แสดงเมื่อไม่มีคลาส hidden */
+}
+
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.optionBtn {
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-family: 'Prompt', sans-serif;
+}
+
+.optionBtn:hover {
+    background-color: #ff5252;
+}
+
+/* สไตล์ผลลัพธ์ */
+.menu-result {
+    font-size: 1.5rem;
+    color: #e74c3c;
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.action-btn {
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#randomAgainBtn {
+    background-color: #2ecc71;
+    color: white;
+}
+
+#restartBtn {
+    background-color: #3498db;
+    color: white;
+}
